@@ -20,3 +20,41 @@ Modelo uma outra classe que apresenta na tela.
 Microsserviços = pequenas partes de um um codigo que realiza uma função em especifico 
 
 Monolito = Repositorio unico de codigo, Uso de uma unica Tecnologia, compilado, testado, gera um unico pacote, feito o deploi como um unico sistema.
+
+#Aula 05/03/2025
+Padrão arquitetural = solução para um problema específico
+
+MVC - separa as responsabilidades (Model(dados) - View(tela) - Control(comportamento))
+Estilo arquitetura = organização do projeto
+
+Arquitetura em camadas
+
+Divisão de responsabilidade
+Performance
+Segurança
+Manutenibilidade
+Camada de apresentação
+Requisitos próprios
+Camada de lógica de negócio (aplicação)
+local central para definição e atualização das regras
+escalar o backend suportar as requisições
+Camada de persistência
+Banco de dados relacional - consolidada
+Resolve problemas de concorrência
+Permite compartilhamento de dados
+
+#Aula 06/03/2025
+[Who Needs an Architect?](https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
+O que é arquitetura?
+Qual o comportamento do arquiteto da "Matrix"?
+Qual o comportamento do arquiteto ideal?
+
+#Aula 13/03/2025
+[Fundamentos da Arquitetura de Software]()
+[Pensamento Arquitetônico]()
+
+#Aula 19/03/2025
+Trade-offs
+Tópicos
+Filas
+Fan out

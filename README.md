@@ -54,7 +54,13 @@ Qual o comportamento do arquiteto ideal?
 [Pensamento Arquitetônico]()
 
 # Aula 19/03/2025
-Trade-offs
-Tópicos
-Filas
-Fan out
+- Trade-offs
+- Tópicos
+- Filas
+- Fan out
+
+# Aula 03/04/2025
+Filas 
+Remover Acoplamento
+Garantia de entrega Unica
+

@@ -64,3 +64,17 @@ Filas
 Remover Acoplamento
 Garantia de entrega Unica
 
+# Aula 09/04/2025
+[Características Arquiteturais](https://integrada.minhabiblioteca.com.br/reader/books/9788550819754/epubcfi/6/2[%3Bvnd.vst.idref%3Dcover]!/4/2/2%4071:49)
+Requisitos Funcionais = Funcionalidades do Sistema
+Requisitos Não Funcionais = São requisitos que não são funcionalidades do sistemas
+
+- Disponibilidade: Por quanto tempo o sistema precisa ficar disponível (se for 24/7, é preciso ter etapas para permitir que o sistema fique ativo rápido no caso de qualquer falha).
+- Continuidade: Capacidade de recuperação de desastres.
+- Desempenho: Inclui teste de estresse, análise de pico, análise da frequência das funções usadas, capacidade requerida e tempos de resposta. Por vezes, a aceitação do desempenho requer um exercício próprio, levando meses para concluir.
+- Recuperabilidade: Requisitos de continuidade do negócio (por exemplo, no caso de desastres, com que rapidez o sistema precisa ficar online de novo?). Isso afetará a estratégia de backup e os requisitos para o hardware duplicado.
+- Confiabilidade/ segurança: Avalia se o sistema precisa ser à prova de falhas ou se tem uma missão crítica no modo como afeta a vida das pessoas. Se ele falha, custará muito dinheiro para a empresa?
+- Robustez: A capacidade de lidar com condições de erro e limites durante a execução, caso a conexão de internet caia ou se há falta de energia ou falha no hardware.
+Escalabilidade	A capacidade de o sistema rodar e operar quando o número de usuários ou requisições aumenta.
+
+

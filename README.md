@@ -77,4 +77,7 @@ Requisitos Não Funcionais = São requisitos que não são funcionalidades do si
 - Robustez: A capacidade de lidar com condições de erro e limites durante a execução, caso a conexão de internet caia ou se há falta de energia ou falha no hardware.
 Escalabilidade	A capacidade de o sistema rodar e operar quando o número de usuários ou requisições aumenta.
 
+# Aula 10/04/2025
+Características Estruturais
+
 

@@ -65,7 +65,10 @@ public class BrokerMensagemServiceImpl implements BrokerMensagemService {
             .queueName(topicName)
             .receiveMode(ServiceBusReceiveMode.RECEIVE_AND_DELETE)
             .processMessage(context -> {
-                System.out.println("Mensagem recebida: " + context.getMessage().getBody().toString());
+                String texto = context.getMessage().getBody().toString();
+                System.out.println("Dale texto");
+                System.out.println(texto);
+                mensagens.add(new Mensagem("Não sei", texto));
                 context.complete();
             })
             .processError(context -> {
@@ -77,6 +80,7 @@ public class BrokerMensagemServiceImpl implements BrokerMensagemService {
         System.out.println("Aguardando mensagens...");
         try {
             System.in.read();
+            Thread.sleep(5000);
         } catch (Exception e) {
             e.printStackTrace();
         }finally{

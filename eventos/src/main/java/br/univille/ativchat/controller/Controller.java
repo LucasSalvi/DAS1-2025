@@ -2,6 +2,8 @@ package br.univille.ativchat.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -21,7 +23,29 @@ public class Controller implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        service.enviarMensagem(new Mensagem("EU", "Mensagem de teste"));
+        String mensagem = form.getMensagem();
+        if (mensagem != null && !mensagem.trim().isEmpty()) {
+            form.setMensagem(form.getNome() + ": " + mensagem);
+            service.enviarMensagem(new Mensagem(form.getNome(), mensagem));
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Digite uma mensagem!");
+        }
     }
+        public void iniciarBuscaDeMensagens() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    List<Mensagem> mensagens = new ArrayList<>();
+                    service.buscarMensagens(mensagens);
+                    for (Mensagem mensagem : mensagens) {
+                        form.setMensagem(mensagem.nome() + ": " + mensagem.texto());
+                    }
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+}
 
 }

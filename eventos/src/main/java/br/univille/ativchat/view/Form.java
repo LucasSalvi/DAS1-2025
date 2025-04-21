@@ -25,7 +25,9 @@ public class Form extends JFrame{
         return txtNovaMsg.getText();
     }
     public void setMensagem(String msg){
-        txtNovaMsg.setText(txtNovaMsg.getText() + "\n" + msg);
+        txtNovaMsg.setText(txtNovaMsg.getText() + msg + "\n");
+        txtChat.setText(txtChat.getText() + msg + "\n");
+        txtNovaMsg.setText("");
     }
     
     public Form() {
@@ -36,6 +38,7 @@ public class Form extends JFrame{
 
         criaJpnCentro();
         criaJpnSul();
+        controller.iniciarBuscaDeMensagens();
         setVisible(true);
     }
 

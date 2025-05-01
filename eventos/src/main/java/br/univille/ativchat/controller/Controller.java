@@ -3,13 +3,13 @@ package br.univille.ativchat.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import br.univille.ativchat.model.Mensagem;
 import br.univille.ativchat.service.BrokerMensagemService;
+import br.univille.ativchat.service.impl.BrokerMensagemServiceImpl;
 import br.univille.ativchat.util.AppModule;
 import br.univille.ativchat.view.Form;
 
@@ -31,21 +31,13 @@ public class Controller implements ActionListener {
             javax.swing.JOptionPane.showMessageDialog(null, "Digite uma mensagem!");
         }
     }
-        public void iniciarBuscaDeMensagens() {
-        new Thread(() -> {
-            while (true) {
-                try {
-                    List<Mensagem> mensagens = new ArrayList<>();
-                    service.buscarMensagens(mensagens);
-                    for (Mensagem mensagem : mensagens) {
-                        form.setMensagem(mensagem.nome() + ": " + mensagem.texto());
-                    }
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+    public void iniciarBuscaDeMensagens() {
+        service.buscarMensagens(new ArrayList<>());
+        ((BrokerMensagemServiceImpl) service).setMensagemCallback(mensagem -> {
+        System.out.println("Mensagem recebida no callback: " + mensagem);
+        form.setMensagem(mensagem.nome() + ": " + mensagem.texto());
+    });
+    }
 }
 
-}
+

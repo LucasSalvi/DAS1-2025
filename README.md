@@ -2,12 +2,12 @@
 
 # Aula 26/02/2025 
 [Livro Eng Sof Moderna - Cap 7](https://engsoftmoderna.info/cap7.html)
-- Interfarce = froma de comunicação
+- Interfarce = Froma de comunicação
 - Componetes = parte de um sistema que pode se incrementar 
-- Pacotes
-- Modulos 
-- Camadas
-- Serviços 
+- Pacotes = Agrupamentos lógicos de classes ou módulos
+- Modulos = Unidades de software que encapsulam uma funcionalidade específica
+- Camadas = Representam uma organização hierárquica do sistema
+- Serviços = Funcionalidades específicas e podem ser acessados por outros componentes ou sistemas
 
 # Aula 27/02/2025
 Arquitetura em camadas - Separar em responsividade
@@ -46,9 +46,11 @@ Permite compartilhamento de dados
 # Aula 06/03/2025
 [Who Needs an Architect?](https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf)
 O que é arquitetura?
+É a parte do sistema aonde é escolhida quais frameworks, tecnologias, padrões que o sistema ira utilizar e a capacidade do sistema de atender aos requisitos funcionais e não funcionais.
 Qual o comportamento do arquiteto da "Matrix"?
+É quem realiza as decisões do sistema e controla o projeto sem se eenvolver com os desenvolvedores do sistem, porem acaba limitando a colaboração, criativade e autonomia da equipe.
 Qual o comportamento do arquiteto ideal?
-
+O arquiteto ideal é um facilitado, que trabalha em colaboração com a equipe de desenvolvimento. Ele define diretrizes e padrões, mas tambem gosta de receber as opiniões da equipe. Foca em capacitar a equipe para que todos entendam o os objetivos arquiteturais do proejto.
 # Aula 13/03/2025
 [Fundamentos da Arquitetura de Software]()
 [Pensamento Arquitetônico]()

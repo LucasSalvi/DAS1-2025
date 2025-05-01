@@ -24,6 +24,7 @@ public class Form extends JFrame{
     public String getMensagem(){
         return txtNovaMsg.getText();
     }
+
     public void setMensagem(String msg){
         txtNovaMsg.setText(txtNovaMsg.getText() + msg + "\n");
         txtChat.setText(txtChat.getText() + msg + "\n");

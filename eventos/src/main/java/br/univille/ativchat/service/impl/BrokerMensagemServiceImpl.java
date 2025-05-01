@@ -1,5 +1,4 @@
 package br.univille.ativchat.service.impl;
-
 import java.util.List;
 
 import com.azure.core.amqp.AmqpTransportType;
@@ -12,19 +11,18 @@ import com.azure.messaging.servicebus.ServiceBusSenderClient;
 import com.azure.messaging.servicebus.administration.ServiceBusAdministrationClient;
 import com.azure.messaging.servicebus.administration.ServiceBusAdministrationClientBuilder;
 import com.azure.messaging.servicebus.models.ServiceBusReceiveMode;
-
 import br.univille.ativchat.model.Mensagem;
 import br.univille.ativchat.service.BrokerMensagemService;
+import java.util.function.Consumer;
 
 public class BrokerMensagemServiceImpl implements BrokerMensagemService {
     String topicName = "topic-chat";
     String serviceBus = "sb-das12025-test-brazilsouth.servicebus.windows.net";
     String subscription = "subscription-" +  System.getenv("USERNAME");
-
     DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
-        
     ServiceBusAdministrationClient adminClient = new ServiceBusAdministrationClientBuilder()
     .credential(serviceBus, credential).buildClient(); 
+    private Consumer<Mensagem> mensagemCallback;
     
     {
         try {
@@ -38,6 +36,10 @@ public class BrokerMensagemServiceImpl implements BrokerMensagemService {
             System.err.println("Erro ao criar subscription: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public void setMensagemCallback(Consumer<Mensagem> callback) {
+        this.mensagemCallback = callback;
     }
 
     @Override
@@ -62,31 +64,30 @@ public class BrokerMensagemServiceImpl implements BrokerMensagemService {
             .credential(credential)
             .transportType(AmqpTransportType.AMQP_WEB_SOCKETS)
             .processor()
-            .queueName(topicName)
+            .topicName(topicName)
+            .subscriptionName(subscription)
             .receiveMode(ServiceBusReceiveMode.RECEIVE_AND_DELETE)
             .processMessage(context -> {
-                String texto = context.getMessage().getBody().toString();
-                System.out.println("Dale texto");
-                System.out.println(texto);
-                mensagens.add(new Mensagem("Não sei", texto));
-                context.complete();
+                try {
+                    String texto = context.getMessage().getBody().toString();
+                    String remetente = context.getMessage().getSubject();
+                    Mensagem mensagem = new Mensagem(remetente, texto);
+                    mensagens.add(mensagem);
+                    System.out.println("Mensagem recebida: " + texto);
+                    if (mensagemCallback != null) {
+                        mensagemCallback.accept(mensagem);
+                    }
+                } catch (Exception e) {
+                    System.err.println("Erro ao processar mensagem: " + e.getMessage());
+                }
             })
             .processError(context -> {
-                System.out.println("Erro: " + context.getException().getMessage());
+                System.err.println("Erro no processador: " + context.getException().getMessage());
             })
             .buildProcessorClient();
-
+        
         processorClient.start();
-        System.out.println("Aguardando mensagens...");
-        try {
-            System.in.read();
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            processorClient.close();
-        }
-        mensagens.stream().forEach(m -> System.out.println(m));
+        System.out.println("Processador de mensagens iniciado...");
     }
-    
+
 }
